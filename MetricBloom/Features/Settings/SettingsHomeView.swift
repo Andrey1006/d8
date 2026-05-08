@@ -1,11 +1,11 @@
 
 import SwiftUI
-import UIKit
+import UniformTypeIdentifiers
 
 struct SettingsHomeView: View {
     @EnvironmentObject private var stores: AppStores
-    @State private var pdfURL: URL?
-    @State private var showPdfShare = false
+    @State private var cachedPDFURL: URL?
+    @State private var isBuildingPDF = false
 
     private var exportText: String {
         MBExportPDF.buildPlainText(
@@ -13,6 +13,41 @@ struct SettingsHomeView: View {
             projects: stores.projects,
             compareScenarios: stores.compareScenarios
         )
+    }
+
+    private var exportPDF: MBPDFReport {
+        MBPDFReport(
+            history: stores.history,
+            projects: stores.projects,
+            compareScenarios: stores.compareScenarios
+        )
+    }
+
+    private func rebuildPDFCache() {
+        guard !isBuildingPDF else { return }
+        isBuildingPDF = true
+
+        let history = stores.history
+        let projects = stores.projects
+        let compareScenarios = stores.compareScenarios
+
+        Task.detached(priority: .utility) {
+            let data = MBExportPDF.buildReportData(history: history, projects: projects, compareScenarios: compareScenarios)
+            let url = FileManager.default.temporaryDirectory
+                .appendingPathComponent("MetricBloom-report-\(Int(Date().timeIntervalSince1970)).pdf")
+            do {
+                try data.write(to: url, options: .atomic)
+                await MainActor.run {
+                    cachedPDFURL = url
+                    isBuildingPDF = false
+                }
+            } catch {
+                await MainActor.run {
+                    cachedPDFURL = nil
+                    isBuildingPDF = false
+                }
+            }
+        }
     }
 
     var body: some View {
@@ -38,17 +73,15 @@ struct SettingsHomeView: View {
                     ShareLink(item: exportText) {
                         Label("Export text", systemImage: "doc.text")
                     }
-                    Button {
-                        pdfURL = MBExportPDF.temporaryPDFURL(
-                            history: stores.history,
-                            projects: stores.projects,
-                            compareScenarios: stores.compareScenarios
-                        )
-                        showPdfShare = true
-                    } label: {
-                        Label("Share PDF", systemImage: "doc.richtext")
+                    if let cachedPDFURL {
+                        ShareLink(item: cachedPDFURL) {
+                            Label("Share PDF", systemImage: "doc.richtext")
+                        }
+                        .foregroundStyle(MBColor.textPrimary)
+                    } else {
+                        Label(isBuildingPDF ? "Preparing PDF…" : "Preparing PDF…", systemImage: "doc.richtext")
+                            .foregroundStyle(MBColor.textSecondary)
                     }
-                    .foregroundStyle(MBColor.textPrimary)
                 } header: {
                     Text("Data")
                 }
@@ -69,20 +102,34 @@ struct SettingsHomeView: View {
             .scrollIndicators(.hidden)
         }
         .navigationTitle("Settings")
-        .sheet(isPresented: $showPdfShare, onDismiss: { pdfURL = nil }) {
-            if let pdfURL {
-                ShareSheet(activityItems: [pdfURL])
+        .task {
+            if cachedPDFURL == nil {
+                rebuildPDFCache()
             }
         }
+        .onChange(of: stores.history.count) { _ in rebuildPDFCache() }
+        .onChange(of: stores.projects.count) { _ in rebuildPDFCache() }
+        .onChange(of: stores.compareScenarios.count) { _ in rebuildPDFCache() }
     }
 }
 
-private struct ShareSheet: UIViewControllerRepresentable {
-    let activityItems: [Any]
+private struct MBPDFReport: Transferable {
+    let history: [CheckResult]
+    let projects: [MBProject]
+    let compareScenarios: [SavedCompareScenario]
 
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    static var transferRepresentation: some TransferRepresentation {
+        FileRepresentation(exportedContentType: .pdf) { report in
+            let data = MBExportPDF.buildReportData(
+                history: report.history,
+                projects: report.projects,
+                compareScenarios: report.compareScenarios
+            )
+            let url = FileManager.default.temporaryDirectory
+                .appendingPathComponent("MetricBloom-report-\(Int(Date().timeIntervalSince1970)).pdf")
+            try data.write(to: url, options: .atomic)
+            return SentTransferredFile(url)
+        }
+        .suggestedFileName("MetricBloom-report.pdf")
     }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
