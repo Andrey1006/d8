@@ -238,6 +238,11 @@ extension CheckResult: Codable {
     }
 }
 
+enum CheckFormPrefill: Equatable {
+    case shaftHole(ShaftHoleInput)
+    case clearanceOnly(ClearanceOnlyInput)
+}
+
 struct SavedCompareScenario: Identifiable, Codable, Hashable, Equatable {
     var id: UUID
     var title: String

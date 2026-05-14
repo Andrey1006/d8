@@ -3,6 +3,7 @@ import SwiftUI
 
 struct CheckResultView: View {
     @EnvironmentObject private var stores: AppStores
+    @Environment(\.mbCheckNavigationPath) private var checkNavPath
     let result: CheckResult
     @State private var showSaveProject = false
 
@@ -29,6 +30,21 @@ struct CheckResultView: View {
                                 .font(.subheadline)
                                 .foregroundStyle(MBColor.textSecondary)
                         }
+                    }
+                    HStack(spacing: 12) {
+                        ShareLink(
+                            item: result.sharePlainText,
+                            subject: Text("Metric Bloom check"),
+                            message: Text(result.summary)
+                        ) {
+                            shareDuplicateCell(title: "Share", icon: "square.and.arrow.up")
+                        }
+                        Button {
+                            duplicateForNewCheck()
+                        } label: {
+                            shareDuplicateCell(title: "Duplicate", icon: "doc.on.doc")
+                        }
+                        .buttonStyle(.plain)
                     }
                     MBSecondaryButton(title: "Save to project…") {
                         showSaveProject = true
@@ -61,6 +77,32 @@ struct CheckResultView: View {
 
     private func value(_ mm: Double) -> String {
         String(format: "%.4f mm", mm)
+    }
+
+    private func shareDuplicateCell(title: String, icon: String) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: icon)
+            Text(title)
+        }
+        .font(.subheadline.weight(.semibold))
+        .foregroundStyle(MBColor.textSecondary)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12)
+        .background(MBColor.surfaceElevated)
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(MBColor.border, lineWidth: 1)
+        )
+    }
+
+    private func duplicateForNewCheck() {
+        stores.applyCheckFormPrefill(from: result)
+        if let binding = checkNavPath {
+            binding.wrappedValue = NavigationPath()
+        } else {
+            stores.navigateToTab = .check
+        }
     }
 }
 

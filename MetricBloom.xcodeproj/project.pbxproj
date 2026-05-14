@@ -6,8 +6,42 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FA44B9852FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FA44B97E2FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FA44B98D2FB5E94C00AD621A /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FA44B98C2FB5E94C00AD621A /* FirebaseCore */; };
+		FA44B98F2FB5E94C00AD621A /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = FA44B98E2FB5E94C00AD621A /* FirebaseRemoteConfig */; };
+		FA44B9922FB5E95E00AD621A /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = FA44B9912FB5E95E00AD621A /* OneSignalExtension */; };
+		FA44B9942FB5E95E00AD621A /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = FA44B9932FB5E95E00AD621A /* OneSignalFramework */; };
+		FA44B9962FB5E95E00AD621A /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = FA44B9952FB5E95E00AD621A /* OneSignalInAppMessages */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA44B9832FB5E8F900AD621A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27722A752FA7CE65009677C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA44B97D2FB5E8F900AD621A;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA44B9862FB5E8F900AD621A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FA44B9852FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		27722A7D2FA7CE65009677C7 /* MetricBloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetricBloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA44B97E2FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -17,6 +51,13 @@
 				Info.plist,
 			);
 			target = 27722A7C2FA7CE65009677C7 /* MetricBloom */;
+		};
+		FA44B98A2FB5E8F900AD621A /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FA44B97D2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -29,6 +70,14 @@
 			path = MetricBloom;
 			sourceTree = "<group>";
 		};
+		FA44B97F2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FA44B98A2FB5E8F900AD621A /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +85,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA44B98D2FB5E94C00AD621A /* FirebaseCore in Frameworks */,
+				FA44B9942FB5E95E00AD621A /* OneSignalFramework in Frameworks */,
+				FA44B9962FB5E95E00AD621A /* OneSignalInAppMessages in Frameworks */,
+				FA44B98F2FB5E94C00AD621A /* FirebaseRemoteConfig in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA44B97B2FB5E8F900AD621A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA44B9922FB5E95E00AD621A /* OneSignalExtension in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				27722A7F2FA7CE65009677C7 /* MetricBloom */,
+				FA44B97F2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */,
 				27722A7E2FA7CE65009677C7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				27722A7D2FA7CE65009677C7 /* MetricBloom.app */,
+				FA44B97E2FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,20 +131,49 @@
 				27722A792FA7CE65009677C7 /* Sources */,
 				27722A7A2FA7CE65009677C7 /* Frameworks */,
 				27722A7B2FA7CE65009677C7 /* Resources */,
+				FA44B9862FB5E8F900AD621A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA44B9842FB5E8F900AD621A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				27722A7F2FA7CE65009677C7 /* MetricBloom */,
 			);
 			name = MetricBloom;
 			packageProductDependencies = (
+				FA44B98C2FB5E94C00AD621A /* FirebaseCore */,
+				FA44B98E2FB5E94C00AD621A /* FirebaseRemoteConfig */,
+				FA44B9932FB5E95E00AD621A /* OneSignalFramework */,
+				FA44B9952FB5E95E00AD621A /* OneSignalInAppMessages */,
 			);
 			productName = MetricBloom;
 			productReference = 27722A7D2FA7CE65009677C7 /* MetricBloom.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FA44B97D2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA44B9892FB5E8F900AD621A /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				FA44B97A2FB5E8F900AD621A /* Sources */,
+				FA44B97B2FB5E8F900AD621A /* Frameworks */,
+				FA44B97C2FB5E8F900AD621A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FA44B97F2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */,
+			);
+			name = OneSignalNotificationServiceExtension;
+			packageProductDependencies = (
+				FA44B9912FB5E95E00AD621A /* OneSignalExtension */,
+			);
+			productName = OneSignalNotificationServiceExtension;
+			productReference = FA44B97E2FB5E8F900AD621A /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -90,11 +182,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2620;
+				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					27722A7C2FA7CE65009677C7 = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					FA44B97D2FB5E8F900AD621A = {
+						CreatedOnToolsVersion = 26.3;
 					};
 				};
 			};
@@ -107,18 +202,30 @@
 			);
 			mainGroup = 27722A742FA7CE65009677C7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FA44B98B2FB5E94C00AD621A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA44B9902FB5E95E00AD621A /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 27722A7E2FA7CE65009677C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				27722A7C2FA7CE65009677C7 /* MetricBloom */,
+				FA44B97D2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		27722A7B2FA7CE65009677C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA44B97C2FB5E8F900AD621A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +242,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA44B97A2FB5E8F900AD621A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA44B9842FB5E8F900AD621A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA44B97D2FB5E8F900AD621A /* OneSignalNotificationServiceExtension */;
+			targetProxy = FA44B9832FB5E8F900AD621A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		27722A912FA7CE66009677C7 /* Debug */ = {
@@ -143,22 +265,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MetricBloom/MetricBloom.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetricBloom/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Metric Bloom";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to add item photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access is required to add sketches and item photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.imarimoeung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -181,22 +307,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MetricBloom/MetricBloom.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MetricBloom/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Metric Bloom";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to add item photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo library access is required to add sketches and item photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.imarimoeung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -333,6 +463,74 @@
 			};
 			name = Release;
 		};
+		FA44B9872FB5E8F900AD621A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imarimoeung.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FA44B9882FB5E8F900AD621A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imarimoeung.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -354,7 +552,63 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		FA44B9892FB5E8F900AD621A /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA44B9872FB5E8F900AD621A /* Debug */,
+				FA44B9882FB5E8F900AD621A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA44B98B2FB5E94C00AD621A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.13.0;
+			};
+		};
+		FA44B9902FB5E95E00AD621A /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-XCFramework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA44B98C2FB5E94C00AD621A /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA44B98B2FB5E94C00AD621A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		FA44B98E2FB5E94C00AD621A /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA44B98B2FB5E94C00AD621A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		FA44B9912FB5E95E00AD621A /* OneSignalExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA44B9902FB5E95E00AD621A /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			productName = OneSignalExtension;
+		};
+		FA44B9932FB5E95E00AD621A /* OneSignalFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA44B9902FB5E95E00AD621A /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			productName = OneSignalFramework;
+		};
+		FA44B9952FB5E95E00AD621A /* OneSignalInAppMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA44B9902FB5E95E00AD621A /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */;
+			productName = OneSignalInAppMessages;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27722A752FA7CE65009677C7 /* Project object */;
 }

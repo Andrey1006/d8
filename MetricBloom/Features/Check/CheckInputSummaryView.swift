@@ -28,6 +28,26 @@ extension CheckResult {
             return rows
         }
     }
+
+    var sharePlainText: String {
+        var lines: [String] = [
+            "Metric Bloom — Check",
+            "",
+            kind.rawValue,
+            "Bloom \(bloomScore) · \(status.title)",
+            "",
+        ]
+        for row in inputSummaryRows {
+            lines.append("\(row.0): \(row.1)")
+        }
+        lines.append("")
+        lines.append(String(format: "Clearance (min…max): %.4f…%.4f mm", clearanceMin, clearanceMax))
+        lines.append("")
+        lines.append(summary)
+        lines.append("")
+        lines.append("Date: \(createdAt.formatted(date: .long, time: .shortened))")
+        return lines.joined(separator: "\n")
+    }
 }
 
 struct CheckInputSummaryView: View {

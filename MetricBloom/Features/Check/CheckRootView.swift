@@ -1,6 +1,17 @@
 
 import SwiftUI
 
+private struct MBCheckNavigationPathKey: EnvironmentKey {
+    static let defaultValue: Binding<NavigationPath>? = nil
+}
+
+extension EnvironmentValues {
+    var mbCheckNavigationPath: Binding<NavigationPath>? {
+        get { self[MBCheckNavigationPathKey.self] }
+        set { self[MBCheckNavigationPathKey.self] = newValue }
+    }
+}
+
 struct CheckRootView: View {
     @State private var path = NavigationPath()
 
@@ -24,6 +35,7 @@ struct CheckRootView: View {
                     CompareDetailView(scenario: scenario)
                 }
         }
+        .environment(\.mbCheckNavigationPath, $path)
         .toolbar(path.isEmpty ? .visible : .hidden, for: .tabBar)
     }
 }

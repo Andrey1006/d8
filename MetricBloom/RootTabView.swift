@@ -49,5 +49,6 @@ struct RootTabView: View {
             OnboardingView(isPresented: onboardingPresented)
                 .environmentObject(stores)
         }
+        .preferredColorScheme(.dark)
     }
 }

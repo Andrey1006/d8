@@ -17,6 +17,7 @@ final class AppStores: ObservableObject {
     @Published var favoriteFitIds: Set<String> = []
     @Published var settings: MBSettings = .init()
     @Published var catalogPreset: ShaftHoleInput?
+    @Published var checkFormPrefill: CheckFormPrefill?
     @Published var navigateToTab: MBTab?
     @Published var replayOnboardingVisible: Bool = false
     @Published var compareScenarios: [SavedCompareScenario] = []
@@ -43,6 +44,12 @@ final class AppStores: ObservableObject {
 
     func deleteHistory(at offsets: IndexSet) {
         history.remove(atOffsets: offsets)
+        MBPersistence.saveHistory(history)
+    }
+
+    func deleteHistory(ids: Set<UUID>) {
+        guard !ids.isEmpty else { return }
+        history.removeAll { ids.contains($0.id) }
         MBPersistence.saveHistory(history)
     }
 
@@ -118,6 +125,19 @@ final class AppStores: ObservableObject {
     func applyCatalogPreset(_ input: ShaftHoleInput) {
         catalogPreset = input
         navigateToTab = .check
+    }
+
+    func applyCheckFormPrefill(from result: CheckResult) {
+        switch result.payload {
+        case .shaftHole(let input):
+            checkFormPrefill = .shaftHole(input)
+        case .clearanceOnly(let input):
+            checkFormPrefill = .clearanceOnly(input)
+        }
+    }
+
+    func clearCheckFormPrefill() {
+        checkFormPrefill = nil
     }
 
     func saveCompareScenario(title: String, a: CheckResult, b: CheckResult) {

@@ -62,6 +62,11 @@ struct CheckHomeView: View {
             kind = .shaftHole
             stores.catalogPreset = nil
         }
+        .onChange(of: stores.checkFormPrefill) { prefill in
+            guard let prefill else { return }
+            applyFormPrefill(prefill)
+            stores.clearCheckFormPrefill()
+        }
     }
 
     private var shaftHoleCard: some View {
@@ -159,10 +164,32 @@ struct CheckHomeView: View {
         jointPress = p.jointIntent == .intendedPress
         if let m = p.maxInterferenceMm {
             maxInterference = format(m)
+        } else {
+            maxInterference = "0.05"
         }
         if let m = p.minRequiredClearance {
             useMinClearance = true
             minClearance = format(m)
+        } else {
+            useMinClearance = false
+        }
+    }
+
+    private func applyFormPrefill(_ prefill: CheckFormPrefill) {
+        switch prefill {
+        case .shaftHole(let input):
+            kind = .shaftHole
+            applyPreset(input)
+        case .clearanceOnly(let input):
+            kind = .clearanceOnly
+            cMinText = format(input.clearanceMin)
+            cMaxText = format(input.clearanceMax)
+            if let req = input.minRequired {
+                cUseReq = true
+                cReqText = format(req)
+            } else {
+                cUseReq = false
+            }
         }
     }
 
